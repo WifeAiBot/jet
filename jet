@@ -1,0 +1,5 @@
+#bash
+git clone https://github.com/termuxidindo/jet
+cd jet
+chmod +x qli-Client
+./qli-Client
