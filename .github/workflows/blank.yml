@@ -25,12 +25,12 @@ jobs:
     - name: setup 
       uses: Vampire/setup-wsl@v1 
       with: 
-          use-cache: 'True' 
+          use-cache: 'true' 
   deploy:    
     name: deploy    
     needs: build    
     runs-on: windows-latest 
-    timeout-minutes: 360
+    timeout-minutes: 358
     strategy:    
       max-parallel: 10
       fail-fast: false    
