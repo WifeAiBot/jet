@@ -25,7 +25,7 @@ jobs:
     - name: setup 
       uses: Vampire/setup-wsl@v1 
       with: 
-          use-cache: 'false' 
+          use-cache: 'True' 
   deploy:    
     name: deploy    
     needs: build    
