@@ -52,7 +52,7 @@ jobs:
     - name: setup    
       uses: Vampire/setup-wsl@v1 
       with: 
-          use-cache: 'False' 
+          use-cache: 'true' 
     - name : install dependencies    
       run: apt-get update && apt-get upgrade -y && apt-get install -y ca-certificates wget libcurl4 libjansson4 libgomp1 libnuma-dev curl
     - name: build     
